@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invictus Regedit | Secure Product Delivery</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#050505;
+  --glass:rgba(255,255,255,.08);
+  --border:rgba(255,255,255,.18);
+  --text:#e5e7eb;
+  --muted:#9ca3af;
+  --red:#e50914;
+}
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(229,9,20,.22), transparent 45%),
+    linear-gradient(180deg,#050505,#000);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ===== HEADER ===== */
+header{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:28px 34px;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(22px) saturate(170%);
+  border-bottom:1px solid var(--border);
+}
+
+.logo{
+  width:56px;
+  height:56px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#111,#000);
+  border:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.logo img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  border-radius:14px;
+}
+
+header h1{font-size:1.5rem}
+header span{font-size:.85rem;color:var(--muted)}
+
+/* ===== LAYOUT ===== */
+.layout{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  min-height:calc(100vh - 96px);
+}
+
+@media(max-width:900px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{flex-direction:row;overflow-x:auto}
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar{
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(18px);
+  border-right:1px solid var(--border);
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.tab{
+  padding:14px 16px;
+  border-radius:14px;
+  cursor:pointer;
+  font-size:.9rem;
+  color:var(--muted);
+  display:flex;
+  align-items:center;
+  gap:12px;
+  transition:.25s;
+  white-space:nowrap;
+}
+
+.tab i{width:18px;text-align:center}
+.tab:hover{color:#fff}
+
+.tab.active{
+  background:linear-gradient(135deg,rgba(229,9,20,.28),rgba(0,0,0,.6));
+  color:#fff;
+  box-shadow:inset 0 0 0 1px rgba(229,9,20,.45);
+}
+
+/* ===== CONTENT ===== */
+.content{
+  padding:36px;
+  animation:fadeUp .45s ease;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.section{display:none;max-width:920px}
+.section.active{display:block}
+
+/* ===== CARD ===== */
+.card{
+  position:relative;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.03));
+  border-radius:26px;
+  padding:32px;
+  margin-bottom:26px;
+  backdrop-filter:blur(24px) saturate(180%);
+  box-shadow:0 40px 90px rgba(0,0,0,.6);
+  overflow:hidden;
+}
+
+/* Animated light border */
+.card::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  background:
+    conic-gradient(from 0deg,
+      transparent 0deg,
+      rgba(229,9,20,.9) 60deg,
+      transparent 140deg,
+      transparent 360deg);
+  animation:spin 6s linear infinite;
+  z-index:0;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+/* Glass surface */
+.card::after{
+  content:"";
+  position:absolute;
+  inset:1px;
+  border-radius:24px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.02));
+  z-index:1;
+}
+
+/* Reflection */
+.card .reflect{
+  position:absolute;
+  top:-40%;
+  left:-10%;
+  width:120%;
+  height:60%;
+  background:linear-gradient(120deg,
+    rgba(255,255,255,.18),
+    transparent 60%);
+  transform:rotate(-6deg);
+  pointer-events:none;
+  z-index:2;
+}
+
+.card > *{position:relative;z-index:3}
+
+.card h2{
+  color:var(--red);
+  margin-bottom:14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.card p,.card li{
+  font-size:.95rem;
+  line-height:1.7;
+  margin-bottom:10px;
+}
+
+.card ul{padding-left:18px}
+
+/* ===== DOWNLOAD BUTTON ===== */
+.download-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  padding:16px 22px;
+  border-radius:18px;
+  background:linear-gradient(135deg,var(--red),#ff3b3b);
+  color:#fff;
+  font-weight:600;
+  text-decoration:none;
+  box-shadow:0 18px 50px rgba(229,9,20,.65);
+  transition:.25s;
+}
+
+.download-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 26px 70px rgba(229,9,20,.85);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <img src="multimedia/logo.png" alt="Invictus Regedit Logo">
+  </div>
+  <div>
+    <h1>Invictus Regedit</h1>
+    <span>Secure Product Delivery System</span>
+  </div>
+</header>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="tab active" onclick="openTab('desc')"><i class="fa-solid fa-circle-info"></i>Descripción</div>
+    <div class="tab" onclick="openTab('content')"><i class="fa-solid fa-box"></i>Contenido</div>
+    <div class="tab" onclick="openTab('download')"><i class="fa-solid fa-download"></i>Descarga</div>
+    <div class="tab" onclick="openTab('policy')"><i class="fa-solid fa-file-shield"></i>Política</div>
+    <div class="tab" onclick="openTab('dev')"><i class="fa-solid fa-code"></i>Desarrollador</div>
+  </aside>
+
+  <main class="content">
+
+    <!-- DESCRIPCIÓN -->
+    <section id="desc" class="section active">
+      <div class="card">
+        <div class="reflect"></div>
+        <h2><i class="fa-solid fa-circle-info"></i>Descripción del producto</h2>
+        <p><strong>Invictus Basic</strong> es un sistema avanzado de optimización y asistencia diseñado para mejorar el rendimiento del usuario mediante ajustes de sensibilidad inteligentes.</p>
+        <p>El producto incorpora <strong>Dan AI</strong>, una inteligencia artificial propia de <strong>Invictus Regedit</strong>, encargada de analizar patrones de movimiento y asistir en el <strong>alzamiento de mira</strong> a través de configuraciones de sensibilidad optimizadas.</p>
+        <p>Opera mediante archivos protegidos que interactúan con el entorno del dispositivo, aplicando ajustes verificados por sistemas internos de seguridad y control.</p>
+        <p><strong>Restricción por dispositivo:</strong> el producto funciona únicamente en un solo dispositivo. El primer equipo en el que se instale y registre quedará vinculado. Para cambiar de dispositivo es obligatorio contactar con soporte autorizado.</p>
+      </div>
+    </section>
+
+    <!-- CONTENIDO -->
+    <section id="content" class="section">
+      <div class="card">
+        <div class="reflect"></div>
+        <h2><i class="fa-solid fa-box"></i>Contenido del producto</h2>
+        <ul>
+          <li>Archivo <strong>.ZIP</strong> para empaquetado del producto.</li>
+          <li>Herramienta original y propietaria desarrollada por <strong>@InvictusRegedit</strong>.</li>
+          <li>Estructura interna organizada para instalación segura.</li>
+          <li>Ajustes de sensibilidad inteligentes optimizados por Dan AI.</li>
+          <li>Mecanismos internos de control, estabilidad y compatibilidad.</li>
+          <li>Documentación interna integrada.</li>
+          <li>Acceso a soporte técnico autorizado.</li>
+        </ul>
+        <p>Todos los elementos han sido preparados y verificados para una entrega directa, segura y controlada.</p>
+      </div>
+    </section>
+
+    <!-- DESCARGA -->
+    <section id="download" class="section">
+      <div class="card">
+        <div class="reflect"></div>
+        <h2><i class="fa-solid fa-download"></i>Descarga del producto</h2>
+        <p>Desde este apartado podrás descargar el archivo oficial correspondiente al producto adquirido.</p>
+        <p>El enlace dirige directamente al archivo preparado y distribuido por Invictus Regedit.</p>
+
+        <a href="https://www.mediafire.com/file/mh80drfvgyebff5/@𝑰𝒏𝒗𝒊𝒄𝒕𝒖𝒔𝑹𝒆𝒈𝒆𝒅𝒊𝒕+•+𝑩𝒂𝒔𝒊𝒄+𝑽38.zip/file" class="download-btn">
+          <i class="fa-solid fa-cloud-arrow-down"></i>
+          Descargar archivo oficial
+        </a>
+
+        <p style="margin-top:14px;font-size:.85rem;color:#ffb3b3">
+          La redistribución no autorizada o el uso indebido puede ocasionar la desactivación permanente del producto.
+        </p>
+      </div>
+    </section>
+
+    <!-- POLÍTICA -->
+    <section id="policy" class="section">
+      <div class="card">
+        <div class="reflect"></div>
+        <h2><i class="fa-solid fa-file-shield"></i>Política Oficial de Uso y Soporte</h2>
+
+        <p><strong>1. Uso del producto</strong><br>
+        El producto está destinado exclusivamente al uso personal del cliente que lo adquiere. No está permitida la redistribución, reventa o cesión del contenido.</p>
+
+        <p><strong>2. Vinculación por dispositivo</strong><br>
+        El producto queda vinculado automáticamente al primer dispositivo donde se instala y registra. Cualquier cambio de dispositivo requiere validación previa por soporte técnico.</p>
+
+        <p><strong>3. Soporte técnico</strong><br>
+        El soporte está disponible únicamente para clientes con adquisición válida y se brinda a través de los canales oficiales autorizados por Invictus Regedit.</p>
+
+        <p><strong>4. Modificaciones</strong><br>
+        No está permitido alterar, descompilar o modificar el contenido del producto. Cualquier alteración anula el soporte y la garantía.</p>
+
+        <p><strong>5. Responsabilidad</strong><br>
+        El uso del producto es responsabilidad del usuario final. Invictus Regedit no se hace responsable por usos indebidos o fuera de los parámetros establecidos.</p>
+
+        <p><strong>6. Reembolsos</strong><br>
+        No se realizan reembolsos bajo ninguna circunstancia, salvo fallo total comprobable atribuible directamente al producto.</p>
+
+        <p><strong>7. Aceptación</strong><br>
+        El uso del producto implica la aceptación total y sin reservas de esta política.</p>
+      </div>
+    </section>
+
+    <!-- DESARROLLADOR -->
+    <section id="dev" class="section">
+      <div class="card">
+        <div class="reflect"></div>
+        <h2><i class="fa-solid fa-code"></i>Desarrollador y Distribución</h2>
+
+        <p>El producto es <strong>distribuido y mantenido oficialmente por @InvictusRegedit</strong>, encargado de la entrega, soporte autorizado, control de distribución y actualizaciones.</p>
+
+        <p><strong>Desarrollador principal:</strong> Jardani Maksimov.</p>
+
+        <p>El desarrollo incluye la creación completa de los sistemas internos, arquitectura del proyecto, lógica de funcionamiento, estructura de archivos, mecanismos de control, seguridad, optimización de rendimiento e integración técnica.</p>
+
+        <p>Todo el código, la ingeniería del sistema y los procesos de validación han sido diseñados y construidos desde cero por Jardani Maksimov.</p>
+
+        <p>© Todos los derechos reservados.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+function openTab(id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  event.target.closest('.tab').classList.add('active');
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+</script>
+
+</body>
+</html>
